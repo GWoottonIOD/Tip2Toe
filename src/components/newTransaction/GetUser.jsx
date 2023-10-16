@@ -32,7 +32,7 @@ export default function GetUser(props) {
         renderInput={(params) => <TextField {...params} sx={{ textAlign: 'center' }}  label="User ID" />}
       /><br/>
       {userId && count===1 ? (
-        <Axios setResponse={setUser} call={'get'} type={'debts'} id={userId} />
+        <Axios setResponse={setUser} call={'get'} type={'users'} id={userId} />
       ) : null}
       <Inputs user={user} userId={userId}/>
     </>

@@ -14,7 +14,7 @@ export default function PublishDebt(props) {
 
   return (
     <>
-      {count === 0 && obj ? <Axios call={'post'} type={'debts'} object={obj} setCount={setCount} count={count}/> : null}
+      {count === 0 && obj ? <Axios call={'post'} type={'appointments'} object={obj} setCount={setCount} count={count}/> : null}
       {count === 1 && obj ? <Axios call={'put'} type={'users'} object={{ 'total': obj.total}} setCount={setCount} count={count} id={props.userId}/> : null}
     </>
   )

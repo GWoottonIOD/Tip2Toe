@@ -7,10 +7,6 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { useNavigate } from "react-router-dom";
 import { UsersContext } from '../context/UserContext';
-import dayjs from 'dayjs'; // Import Day.js
-import { Troubleshoot } from '@mui/icons-material';
-import Axios from '../axios/Axios';
-import GetUser from '../components/newTransaction/GetUser';
 import GetUsers from '../components/newTransaction/GetUsers';
 
 export const DebtNew = () => {
