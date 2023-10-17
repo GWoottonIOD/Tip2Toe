@@ -9,6 +9,17 @@ const theme = createTheme({
       main: '#FF10F0'
     }
   },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          '&:hover': {
+            color: '#800080', // Define the desired hover color here
+          }
+        }
+      }
+    }
+  }
 }
 );
 

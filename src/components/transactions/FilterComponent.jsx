@@ -57,7 +57,7 @@ export default function FilterComponent(props) {
           >
             {currentUser.UserAdmin ?<div>Bookings </div>:<div>Bookings for {currentUser.name}<br/></div>}
             {isPaid ? null : <div>Amount owed: ${total}</div>}
-            {currentUser && currentUser.UserAdmin ? <Button variant="outlined" id="buttonWhite" size="small" href={"/debtnew/"}>Add a booking</Button> : <Button variant="outlined" id="buttonWhite" size="small" href={"/debtnew/"}  sx={{ ":hover": { color: '#4A8E51' }}}>Book now!</Button>}
+            {currentUser && currentUser.UserAdmin ? <Button variant="outlined" id="buttonWhite" size="small" href={"/debtnew/"}>Add a booking</Button> : <Button variant="outlined" id="buttonWhite" size="small" href={"/debtnew/"}>Book now!</Button>}
             <br/>{currentUser && currentUser.UserAdmin && isPaid ? <Button variant="outlined" id="buttonWhite" size="small" onClick={() => filterUnpaid(debts)}>Unpaid</Button> : <Button variant="outlined" id="buttonWhite" size="small" onClick={filterPaid}>Paid</Button>}
             <div><Button variant="outlined" id="buttonWhite" size="small"><RefreshIcon onClick={() => window.location.reload()} /></Button></div>
           </Typography>

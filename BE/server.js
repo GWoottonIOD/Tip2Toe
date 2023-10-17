@@ -32,6 +32,9 @@ app.use('/api/appointments', apptRoutes);
 let userRoutes = require('./routes/userRoutes');
 app.use('/api/users', userRoutes);
 
+let serviceRoutes = require('./routes/serviceRoutes');
+app.use('/api/services', serviceRoutes);
+
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
