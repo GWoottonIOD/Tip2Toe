@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { TextField, Autocomplete } from '@mui/material';
 import Axios from '../../axios/Axios';
 import Inputs from './Inputs';
+import GetServices from './GetServices';
 
 export default function GetUser(props) {
   const [userId, setUserId] = useState(null);
@@ -9,16 +10,12 @@ export default function GetUser(props) {
   const [user, setUser] = useState(null);
   const users = props.users;
   const userOptions = users.map((user) => ({
-    label: user.id.toString(), // Convert the ID to a string
+    label: user.name.toString(), // Convert the ID to a string
     value: user.id, // Keep the ID as a number
   }));
 
-  const userObj = users.find(user => user.id === userId);
-
   return (
     <>
-    <div>{user?userObj.name:"Add a transaction"}</div>
-    <br/>
     <Autocomplete
         disablePortal
         id="User ID"
@@ -29,12 +26,13 @@ export default function GetUser(props) {
         options={userOptions}
         getOptionLabel={(option) => option.label}
         sx={{ width: 195, margin: '0 auto', textAlign: 'center' }}
-        renderInput={(params) => <TextField {...params} sx={{ textAlign: 'center' }}  label="User ID" />}
+        renderInput={(params) => <TextField {...params} sx={{ textAlign: 'center' }}  label="Choose a client" />}
       /><br/>
-      {userId && count===1 ? (
+      {userId && count!==0 ? (
         <Axios setResponse={setUser} call={'get'} type={'users'} id={userId} />
       ) : null}
-      <Inputs user={user} userId={userId}/>
+      {/* <Inputs user={user} userId={userId}/> */}
+  <GetServices user={user} userId={userId}/>
     </>
   );
 }

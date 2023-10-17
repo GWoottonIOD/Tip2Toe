@@ -18,14 +18,11 @@ export default function DateChange(props) {
 
     return (
         <div>
-            <Button onClick={()=>{props.setDueDate(newDueDate.toISOString()); handleDateChange}}>Set a Date</Button><br/>
-            {customDate?<><Button onClick={() => setCustomDate(!customDate)}>Normal Date</Button><br/></>
-            :<Button onClick={() => setCustomDate(!customDate)}>Custom Date</Button>}
-            {customDate?<>
+            <br/>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DatePicker required label={"Due date"} onChange={handleDateChange} renderInput={(params) => <input {...params} />} format='YYYY-MM-DD' />
-            </LocalizationProvider></>
-            :null}
+            </LocalizationProvider>
+
         </div>
     )
 }
