@@ -9,10 +9,13 @@ Appt.init({
         type: DataTypes.INTEGER, allowNull: false, autoIncrement: true, primaryKey: true
     },
     name: {
-        type: DataTypes.STRING, allowNull: true, required: false
+        type: DataTypes.STRING, allowNull: false, required: true
     },
     time: {
-        type: DataTypes.INTEGER, allowNull: false, required: false
+        type: DataTypes.INTEGER, allowNull: false, required: true
+    },
+    cost: {
+        type: DataTypes.INTEGER, allowNull: false, required: true
     }
 },
     {
