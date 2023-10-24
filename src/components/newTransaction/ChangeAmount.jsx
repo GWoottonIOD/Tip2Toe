@@ -1,8 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, TextField } from '@mui/material'
 
 export default function ChangeAmount(props) {
     const [isCustom, setCustom] = useState(false)
+
+    useEffect(() => {
+        console.log(props.serviceList)
+        const sum = props.serviceList.map(service => service.cost)
+        .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+        console.log(sum)
+        props.setAmount(sum)
+    }, [props.serviceList])
     return (
         <div>
             {isCustom ? (
@@ -15,14 +23,7 @@ export default function ChangeAmount(props) {
                     <br />
                 </>
             ) : (
-                <>
-                    <Button onClick={() => props.setAmount(20)}>20</Button>
-                    <br />
-                    <Button onClick={() => props.setAmount(50)}>50</Button>
-                    <br />
-                    <Button onClick={() => props.setAmount(120)}>120</Button>
-                    <br />
-                </>
+                null
             )}
 
             {isCustom?<Button onClick={() => setCustom(!isCustom)}>Buttons</Button>:<Button onClick={() => setCustom(!isCustom)}>Custom</Button>}

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect, useState, useContext } from 'react'
 import axios from 'axios'
-import { Button, TextField, Box } from '@mui/material'
+import { Button, Container, Box } from '@mui/material'
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -73,7 +73,9 @@ export const DebtNew = () => {
                 }}
             ></Box>
             <form>
-                <GetUsers />
+                <Container sx={{ py: 8, display: 'flex', justifyContent: 'center' }} maxWidth="md" >
+                    <GetUsers />
+                </Container>
             </form>
         </div>
     )

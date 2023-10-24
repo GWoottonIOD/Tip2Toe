@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import {Button, TextField} from '@mui/material'
+import React, { useState} from 'react'
+import {Button, Typography} from '@mui/material'
 import DateChange from './DateChange';
 import Totalize from './Totalize';
 import PublishDebt from './PublishDebt';
@@ -19,8 +19,9 @@ export default function Inputs(props) {
     
     return (
         <div>
-            {props.user?<Totalize setTotal={setTotal} user={props.user}/>:null}
-            <ChangeAmount setAmount={setAmount}/>
+            {/* {props.user?<Totalize setTotal={setTotal} user={props.user}/>:null} */}
+            <br/><Typography variant='h6'>Due: ${amount}</Typography><br/>
+            <ChangeAmount setAmount={setAmount} serviceList={props.serviceList} amount={props.amount}/>
             <DateChange setDueDate={setDueDate}/><br/>
             <Button onClick={inputCheck}>Add</Button>
             {count===1 ? <PublishDebt userId={props.userId} amount={amount} dueDate={dueDate} total={total} onChange={()=>setCount(count+1)}/> : null}

@@ -4,11 +4,10 @@ import Getservice from './GetService';
 export default function GetServices(props) {
     const [count, setCount] = useState(0)
     const [services, setServices] = useState(null);
-    console.log(services)
   return (
     <div>
         {count === 0 ? <Axios setResponse={setServices} call={'get'} type={'services'} setCount={setCount} count={count} /> : null}
-        {services ? <Getservice services={services} user={props.user} userId={props.userId}/> : null}
+        {services ? <Getservice services={services} user={props.user}/> : null}
     </div>
   )
 }

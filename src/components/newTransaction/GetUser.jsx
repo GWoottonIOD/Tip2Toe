@@ -22,17 +22,14 @@ export default function GetUser(props) {
         onChange={(e, selectedOption) => {
           setUserId(selectedOption ? selectedOption.value : null);
           setCount(count + 1);
+          setUser(users.find(service => service.id === selectedOption.value));
         }}
         options={userOptions}
         getOptionLabel={(option) => option.label}
         sx={{ width: 195, margin: '0 auto', textAlign: 'center' }}
         renderInput={(params) => <TextField {...params} sx={{ textAlign: 'center' }}  label="Choose a client" />}
       /><br/>
-      {userId && count!==0 ? (
-        <Axios setResponse={setUser} call={'get'} type={'users'} id={userId} />
-      ) : null}
-      {/* <Inputs user={user} userId={userId}/> */}
-  <GetServices user={user} userId={userId}/>
+  <GetServices user={user}/>
     </>
   );
 }
