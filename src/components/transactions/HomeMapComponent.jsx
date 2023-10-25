@@ -24,8 +24,9 @@ export default function HomeMapComponent(props) {
                                     ${debt.amount}
                                 </Typography>
                                 <Typography>
-                                    Verified on: <br></br>
-                                    {debt.createdAt.slice(0, 10)}<br></br>
+                                    Booking: <br></br>
+                                    {debt.duedate.slice(0, 10)}<br></br>
+                                    {debt.duedate.slice(11, 16)}<br></br>
                                 </Typography>
                                 {props.paid == true ? <PaidComponent debt={debt} /> : <OverdueComponent debt={debt} />}
                             </CardContent>

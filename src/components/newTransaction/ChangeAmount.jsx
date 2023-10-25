@@ -26,7 +26,7 @@ export default function ChangeAmount(props) {
                 null
             )}
 
-            {isCustom?<Button onClick={() => setCustom(!isCustom)}>Buttons</Button>:<Button onClick={() => setCustom(!isCustom)}>Custom</Button>}
+            {isCustom?<Button onClick={() => setCustom(!isCustom)}>Buttons</Button>:<Button onClick={() => setCustom(!isCustom)}>Custom Amount</Button>}
         </div>
     )
 }
