@@ -8,7 +8,6 @@ export default function ChangeAmount(props) {
         console.log(props.serviceList)
         const sum = props.serviceList.map(service => service.cost)
         .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-        console.log(sum)
         props.setAmount(sum)
     }, [props.serviceList])
     return (

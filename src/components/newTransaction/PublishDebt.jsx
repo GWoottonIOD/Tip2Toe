@@ -6,10 +6,10 @@ export default function PublishDebt(props) {
   const [obj, setObj] = useState(null);
 
   useEffect(() => {
+    console.log(props.booking)
     const sum = props.total + props.amount
     parseInt(sum)
-    console.log(sum)
-    setObj({ 'userID': props.userId, 'amount': props.amount, 'duedate': props.dueDate, 'total': sum, 'paid': false })
+    setObj({ 'userID': props.userId, 'amount': props.amount,'booking': props.booking, 'duedate': props.dueDate, 'total': sum, 'paid': false })
   },[])
 
   return (

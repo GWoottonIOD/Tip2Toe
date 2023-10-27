@@ -11,16 +11,17 @@ export default function DateChange(props) {
 
     const handleDateChange = (date) => {
         if (date.$d){setIsDate(false)}
-        else if (date.$h) {setIsDate(true)}
+        else if (date.$H) {setIsDate(true)}
         console.log(date)
         //define the date
         const selectedDate = new Date(date)
         console.log(selectedDate)
         //set the date
-        props.setDueDate(selectedDate);
+        props.setBooking(selectedDate.toISOString());
+        newDueDate.setDate(newDueDate.getDate() + 7)
+        props.setDueDate(newDueDate.toISOString());
     };
     const newDueDate = new Date()
-
 
     return (
         <div>

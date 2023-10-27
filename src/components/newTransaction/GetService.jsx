@@ -10,9 +10,6 @@ export default function Getservice(props) {
   const [service, setService] = useState(null);
   const [serviceList, setServiceList] = useState([]);
 
-  console.log(service)
-  console.log(props.user)
-
   const services = props.services;
   const serviceOptions = services.map((service) => ({
     label: service.name.toString(),

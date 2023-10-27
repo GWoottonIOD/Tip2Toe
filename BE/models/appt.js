@@ -18,6 +18,9 @@ Appt.init({
             indexes: [{ unique: true }],
         }
     },
+    booking: {
+        type: DataTypes.DATE, allowNull: true, required: false
+    },
     duedate: {
         type: DataTypes.DATE, allowNull: true, required: false
     },
