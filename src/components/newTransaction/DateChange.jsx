@@ -12,14 +12,21 @@ export default function DateChange(props) {
     const handleDateChange = (date) => {
         if (date.$d){setIsDate(false)}
         else if (date.$H) {setIsDate(true)}
-        console.log(date)
         //define the date
-        const selectedDate = new Date(date)
-        console.log(selectedDate)
+        // const selectedDate = new Date(date)
+        const selectedDate = {
+            year: date.$y,
+            month: date.$M,
+            day: date.$D,
+            hour: date.$H,
+            minute: date.$m
+        }
+        console.log('Booking date:',selectedDate)
         //set the date
-        props.setBooking(selectedDate.toISOString());
+        props.setBooking(selectedDate);
         newDueDate.setDate(newDueDate.getDate() + 7)
-        props.setDueDate(newDueDate.toISOString());
+        console.log('dueDate date:',newDueDate)
+        props.setDueDate(newDueDate);
     };
     const newDueDate = new Date()
 
@@ -30,7 +37,7 @@ export default function DateChange(props) {
             <LocalizationProvider dateAdapter={AdapterDayjs}>
                 {isDate?<DatePicker required label={"Due date"} onChange={handleDateChange} renderInput={(params) => <input {...params} />} format='YYYY-MM-DD' />
             :   <DemoItem>
-                    <MobileTimePicker defaultValue={newDueDate.toLocaleTimeString()} onChange={handleDateChange} />
+                    <MobileTimePicker defaultValue={newDueDate.toLocaleTimeString()} onChange={handleDateChange}/>
                 </DemoItem>}
             </LocalizationProvider>
 

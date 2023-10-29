@@ -29,8 +29,8 @@ router.get('/userAppt/:userid', (req, res) => {
 })
 
 router.post('/create', postLimiter, (req, res) => {
-    console.log(req.body)
-    Controllers.createAppt(req.body, res)
+    Controllers.changeToDate(req.body, res)
+    // Controllers.createAppt(req.body, res)
 })
 
 router.put('/put/:id', (req, res) => {

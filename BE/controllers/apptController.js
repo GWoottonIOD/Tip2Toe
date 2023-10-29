@@ -43,15 +43,22 @@ const createAppt = (data, res) => {
     })
 }
 
-// const createAppt = (data, res) => {
-//     Models.Appt.create(data).then((data) => {
-//       // Clear the "Appt" cache
-//       client.del("Appt");
-//       res.send({ result: 200, data: data });
-//     }).catch(err => {
-//       throw err;
-//     });
-//   };
+const changeToDate = (data, res) => {
+    let booking = data.booking;
+    const date = new Date(
+        booking.year,
+        booking.month,
+        booking.day + 1,
+        booking.hour + 26,
+        booking.minute
+    );
+    console.log(date);
+    booking = date.toISOString().slice(0, 19)
+    console.log(booking)
+    data.booking = booking; // update the data object with the formatted date
+    createAppt(data, res);
+};
+
   
 
 const updateAppt = (req, res) => {
@@ -108,5 +115,14 @@ const unlockAppt = (req, rest) => {
 }
 
 module.exports = {
-    getAppt, createAppt, updateAppt, deleteAppt, getApptByID, getApptByUserID, lockAppt, unlockAppt, deleteApptByUserID
+    getAppt, 
+    createAppt, 
+    updateAppt, 
+    deleteAppt, 
+    getApptByID, 
+    getApptByUserID, 
+    lockAppt, 
+    unlockAppt, 
+    deleteApptByUserID,
+    changeToDate
 }
