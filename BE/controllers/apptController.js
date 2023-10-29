@@ -52,7 +52,6 @@ const changeToDate = (data, res) => {
         booking.hour + 26,
         booking.minute
     );
-    console.log(date);
     booking = date.toISOString().slice(0, 19)
     console.log(booking)
     data.booking = booking; // update the data object with the formatted date

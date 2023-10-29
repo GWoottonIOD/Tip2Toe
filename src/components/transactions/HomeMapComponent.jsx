@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-     Card, CardActions, CardContent, Grid, Typography
+    Card, CardActions, CardContent, Grid, Typography
 } from '@mui/material';
 import OverdueComponent from './OverdueComponent';
 import PaidComponent from './PaidComponent';
@@ -25,13 +25,20 @@ export default function HomeMapComponent(props) {
                                 </Typography>
                                 <Typography>
                                     Booking: <br></br>
-                                    {debt.booking.slice(0, 10)}<br></br>
-                                    {debt.booking.slice(11, 24)}<br></br>
+                                    {debt.booking.slice(0, 10)}
+                                    <br></br>
+                                    {debt.booking.slice(11, 13) > 12
+                                        ? <>{parseInt(debt.booking.slice(11, 13)) - 12}{debt.booking.slice(13, 16)} PM</>
+                                        : <>{parseInt(debt.booking.slice(11, 13)) - 12}{debt.booking.slice(13, 16)} AM</>}
                                 </Typography>
-                                {props.paid == true ? <PaidComponent debt={debt} /> : <OverdueComponent debt={debt} />}
+                                {props.paid == true
+                                    ? <PaidComponent debt={debt} />
+                                    : <OverdueComponent debt={debt} />}
                             </CardContent>
-                            <CardActions sx={{ display: 'flex', justifyContent: 'center'}}>
-                                 {props.currentUser && props.currentUser.UserAdmin ?<PaidDeleteComponent debt={debt} currentUser={props.currentUser} /> : null }
+                            <CardActions sx={{ display: 'flex', justifyContent: 'center' }}>
+                                {props.currentUser && props.currentUser.UserAdmin
+                                    ? <PaidDeleteComponent debt={debt} currentUser={props.currentUser} />
+                                    : null}
                             </CardActions>
                         </Card>
                     </Grid>
