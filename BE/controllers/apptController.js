@@ -48,8 +48,8 @@ const changeToDate = (data, res) => {
     const date = new Date(
         booking.year,
         booking.month,
-        booking.day + 1,
-        booking.hour + 26,
+        booking.day +1,
+        booking.hour + 2,
         booking.minute
     );
     booking = date.toISOString().slice(0, 19)

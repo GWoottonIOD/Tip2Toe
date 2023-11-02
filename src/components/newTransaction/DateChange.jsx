@@ -8,18 +8,29 @@ import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
 
 export default function DateChange(props) {
     const [isDate, setIsDate] = useState(true)
+    const [selectedDate, setSelectedDate] = useState({})
+
+    console.log(selectedDate)
 
     const handleDateChange = (date) => {
-        if (date.$d){setIsDate(false)}
-        else if (date.$H) {setIsDate(true)}
-        //define the date
-        // const selectedDate = new Date(date)
-        const selectedDate = {
-            year: date.$y,
-            month: date.$M,
-            day: date.$D,
-            hour: date.$H,
-            minute: date.$m
+        if (isDate) {
+            setIsDate(false),
+            setSelectedDate({
+                ...selectedDate,
+                year: date.$y,
+                month: date.$M,
+                day: date.$D
+            })
+        }
+        else if (!isDate && date.$m) {
+            setIsDate(true),
+            setSelectedDate({
+                ...selectedDate,
+                hour: date.$H,
+                minute: date.$m
+            })
+            selectedDate.hour= date.$H,
+            selectedDate.minute= date.$m
         }
         console.log('Booking date:',selectedDate)
         //set the date
@@ -35,9 +46,9 @@ export default function DateChange(props) {
             <br />
             {isDate?<><Button onClick={() => setIsDate(false)}>Change Time</Button><br/></>: <Button onClick={() => setIsDate(true)}>Change Date</Button>}
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-                {isDate?<DatePicker required label={"Due date"} onChange={handleDateChange} renderInput={(params) => <input {...params} />} format='YYYY-MM-DD' />
+                {isDate?<DatePicker required label={"Set Booking"} onAccept={handleDateChange} renderInput={(params) => <input {...params} />} format='YYYY-MM-DD' />
             :   <DemoItem>
-                    <MobileTimePicker defaultValue={newDueDate.toLocaleTimeString()} onChange={handleDateChange}/>
+                    <MobileTimePicker onAccept={handleDateChange}/>
                 </DemoItem>}
             </LocalizationProvider>
 

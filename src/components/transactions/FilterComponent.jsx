@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {
   Button, CssBaseline, Box, Typography,
-  Container, Link
+  Container
 } from '@mui/material';
-import { useEffect, useState, useContext, useReducer } from 'react';
+import { useEffect, useState } from 'react';
 import DebtPages from '../DebtPages';
 import HomeMapComponent from './HomeMapComponent';
 import RefreshIcon from '@mui/icons-material/Refresh';
@@ -12,11 +12,20 @@ export default function FilterComponent(props) {
   const [filter, setFilter] = useState([])
   const [isPaid, setIsPaid] = useState(false)
   const [total, setTotal] = useState(0)
+  const [day, setDay] = useState(new Date().toISOString())
+  const updateDay = new Date(day);
+  updateDay.setHours(updateDay.getHours() + 36);
   const [page, setPage] = useState(1);
+  // console.log(day.toLocaleDateString().replace('/', '-').replace('/', '-').replace(day.slice(0,2), day.slice(8,10)))
+  const getDay = day.replace(day.slice(0,2), day.slice(8,10))
+  // console.log(`${getDay}`)
+  // console.log('Day: '+updateDay.toISOString())
+  console.log('Day: '+day)
+  // console.log(debts)
 
   const debts = props.debts
   const currentUser = props.currentUser
-
+  console.log(debts)
   const filterPaid = () => {
     const filteredArray = debts.filter((transaction) => transaction.paid === true)
     setFilter(filteredArray)
@@ -26,7 +35,10 @@ export default function FilterComponent(props) {
 
   const filterUnpaid = (response) => {
     const filteredTransaction = response.filter((transaction) => transaction.paid === false)
-    setFilter(filteredTransaction)
+    const todayOnly = filteredTransaction.filter((transaction)=> transaction.booking.slice(0,10) === day)
+    const consoleMap = response.map((trans)=> console.log(trans.booking.slice(0,10)))
+    setFilter(todayOnly)
+    // setFilter(filteredTransaction)
     getTotal(response)
     setIsPaid(false)
   } 
