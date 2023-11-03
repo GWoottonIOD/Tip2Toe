@@ -28,8 +28,8 @@ export default function HomeMapComponent(props) {
                                     {debt.booking.slice(0, 10)}
                                     <br></br>
                                     {debt.booking.slice(11, 13) > 12
-                                        ? <>{parseInt(debt.booking.slice(11, 13)) - 12}{debt.booking.slice(13, 16)} PM</>
-                                        : <>{parseInt(debt.booking.slice(11, 13)) - 12}{debt.booking.slice(13, 16)} AM</>}
+                                        ? <>{debt.booking.slice(11, 13) -12}{debt.booking.slice(13, 16)} PM</>
+                                        : <>{debt.booking.slice(11, 13)}{debt.booking.slice(13, 16)} AM</>}
                                 </Typography>
                                 {props.paid == true
                                     ? <PaidComponent debt={debt} />

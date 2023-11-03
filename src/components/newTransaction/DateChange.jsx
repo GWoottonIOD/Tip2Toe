@@ -10,8 +10,6 @@ export default function DateChange(props) {
     const [isDate, setIsDate] = useState(true)
     const [selectedDate, setSelectedDate] = useState({})
 
-    console.log(selectedDate)
-
     const handleDateChange = (date) => {
         if (isDate) {
             setIsDate(false),
@@ -22,7 +20,7 @@ export default function DateChange(props) {
                 day: date.$D
             })
         }
-        else if (!isDate && date.$m) {
+        else if (!isDate) {
             setIsDate(true),
             setSelectedDate({
                 ...selectedDate,

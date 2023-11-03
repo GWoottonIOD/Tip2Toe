@@ -12,16 +12,13 @@ export default function FilterComponent(props) {
   const [filter, setFilter] = useState([])
   const [isPaid, setIsPaid] = useState(false)
   const [total, setTotal] = useState(0)
-  const [day, setDay] = useState(new Date().toISOString())
-  const updateDay = new Date(day);
-  updateDay.setHours(updateDay.getHours() + 36);
+  const currentDay = new Date().toISOString()
+  const updateDay = new Date(currentDay);
+  updateDay.setHours(updateDay.getHours() + 13);
+  const [day, setDay] = useState(updateDay.toISOString().slice(0,10))
   const [page, setPage] = useState(1);
-  // console.log(day.toLocaleDateString().replace('/', '-').replace('/', '-').replace(day.slice(0,2), day.slice(8,10)))
-  const getDay = day.replace(day.slice(0,2), day.slice(8,10))
-  // console.log(`${getDay}`)
-  // console.log('Day: '+updateDay.toISOString())
-  console.log('Day: '+day)
-  // console.log(debts)
+
+  console.log('Day: '+updateDay.toISOString().slice(0,10))
 
   const debts = props.debts
   const currentUser = props.currentUser
@@ -36,9 +33,7 @@ export default function FilterComponent(props) {
   const filterUnpaid = (response) => {
     const filteredTransaction = response.filter((transaction) => transaction.paid === false)
     const todayOnly = filteredTransaction.filter((transaction)=> transaction.booking.slice(0,10) === day)
-    const consoleMap = response.map((trans)=> console.log(trans.booking.slice(0,10)))
     setFilter(todayOnly)
-    // setFilter(filteredTransaction)
     getTotal(response)
     setIsPaid(false)
   } 
