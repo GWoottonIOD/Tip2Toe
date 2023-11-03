@@ -11,6 +11,7 @@ import RefreshIcon from '@mui/icons-material/Refresh';
 export default function FilterComponent(props) {
   const [filter, setFilter] = useState([])
   const [isPaid, setIsPaid] = useState(false)
+  const [isToday, setToday] = useState(true)
   const [total, setTotal] = useState(0)
   const currentDay = new Date().toISOString()
   const updateDay = new Date(currentDay);
@@ -30,10 +31,11 @@ export default function FilterComponent(props) {
     setIsPaid(true)
   }
 
-  const filterUnpaid = (response) => {
-    const filteredTransaction = response.filter((transaction) => transaction.paid === false)
-    const todayOnly = filteredTransaction.filter((transaction)=> transaction.booking.slice(0,10) === day)
-    setFilter(todayOnly)
+  const filterUnpaid = (response, today) => {
+    {today? setToday(today) : setToday(today)}
+    let filteredTransaction = response.filter((transaction) => transaction.paid === false)
+    {isToday?filteredTransaction = filteredTransaction.filter((transaction)=> transaction.booking.slice(0,10) === day): null}
+    setFilter(filteredTransaction)
     getTotal(response)
     setIsPaid(false)
   } 
@@ -66,6 +68,8 @@ export default function FilterComponent(props) {
             {isPaid ? null : <div>Amount owed: ${total}</div>}
             {currentUser && currentUser.UserAdmin ? <Button variant="outlined" id="buttonWhite" size="small" href={"/debtnew/"}>Add a booking</Button> : <Button variant="outlined" id="buttonWhite" size="small" href={"/debtnew/"}>Book now!</Button>}
             <br/>{currentUser && currentUser.UserAdmin && isPaid ? <Button variant="outlined" id="buttonWhite" size="small" onClick={() => filterUnpaid(debts)}>Unpaid</Button> : <Button variant="outlined" id="buttonWhite" size="small" onClick={filterPaid}>Paid</Button>}
+            {/* <br/>{isToday ? <Button variant="outlined" id="buttonWhite" size="small" onClick={() => setToday(false)}>All Transactions</Button> : <Button variant="outlined" id="buttonWhite" size="small" onClick={() => setToday(true)}>Today only</Button>} */}
+            <br/>{isToday ? <Button variant="outlined" id="buttonWhite" size="small" onClick={() => filterUnpaid(debts, false)}>Today Only</Button> : <Button variant="outlined" id="buttonWhite" size="small" onClick={() => filterUnpaid(debts, true)}>All Transactions</Button>}
             <div><Button variant="outlined" id="buttonWhite" size="small"><RefreshIcon onClick={() => window.location.reload()} /></Button></div>
           </Typography>
           <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer"></Box>
