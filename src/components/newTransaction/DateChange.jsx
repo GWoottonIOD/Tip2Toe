@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -42,6 +42,7 @@ export default function DateChange(props) {
     return (
         <div>
             <br />
+            <Typography>Selected Booking: <br /> {selectedDate.day}/{selectedDate.month}/{selectedDate.year} at {selectedDate.hour}:{selectedDate.minute}</Typography>
             {isDate?<><Button onClick={() => setIsDate(false)}>Change Time</Button><br/></>: <Button onClick={() => setIsDate(true)}>Change Date</Button>}
             <LocalizationProvider dateAdapter={AdapterDayjs}>
                 {isDate?<DatePicker required label={"Set Booking"} onAccept={handleDateChange} renderInput={(params) => <input {...params} />} format='YYYY-MM-DD' />
