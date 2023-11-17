@@ -17,6 +17,7 @@ export default function Inputs(props) {
             alert('Please fill in all fields')
         } else { setCount(count+1)  } 
     }
+    console.log(props.serviceList.map((service) => service.name))
     
     return (
         <div>
@@ -25,7 +26,7 @@ export default function Inputs(props) {
             <ChangeAmount setAmount={setAmount} serviceList={props.serviceList} amount={props.amount}/>
             <DateChange setDueDate={setDueDate} setBooking={setBooking}/><br/>
             <Button onClick={inputCheck}>Add</Button>
-            {count===1 ? <PublishDebt userId={props.userId} amount={amount} booking={booking} dueDate={dueDate} total={total} onChange={()=>setCount(count+1)}/> : null}
+            {count===1 ? <PublishDebt userId={props.userId} amount={amount} services={props.serviceList.map((service) => service.name)} booking={booking} dueDate={dueDate} total={total} onChange={()=>setCount(count+1)}/> : null}
         </div>
     )
 }

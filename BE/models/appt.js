@@ -19,13 +19,8 @@ Appt.init({
             indexes: [{ unique: true }],
         }
     },
-    serviceID: {
-        type: DataTypes.INTEGER, allowNull: true, required: false,
-        references: {
-            model: Services, //reference to another model
-            key: "id", //column name of the referenced model
-            indexes: [{ unique: true }],
-        }
+    services: {
+        type: DataTypes.JSON, allowNull: false, required: false
     },
     booking: {
         type: DataTypes.DATE, allowNull: true, required: false

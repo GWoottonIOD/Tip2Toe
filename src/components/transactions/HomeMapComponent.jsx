@@ -5,6 +5,7 @@ import {
 import OverdueComponent from './OverdueComponent';
 import PaidComponent from './PaidComponent';
 import PaidDeleteComponent from './PaidDeleteComponent';
+import { IndeterminateCheckBox } from '@mui/icons-material';
 
 export default function HomeMapComponent(props) {
     return (
@@ -23,12 +24,17 @@ export default function HomeMapComponent(props) {
                                 <Typography>
                                     ${debt.amount}
                                 </Typography>
+                                {debt.services.map((service, index) =>
+                                    <Typography key={index}>
+                                        {service}
+                                    </Typography>
+                                )}
                                 <Typography>
                                     Booking: <br></br>
                                     {debt.booking.slice(0, 10)}
                                     <br></br>
                                     {debt.booking.slice(11, 13) > 12
-                                        ? <>{debt.booking.slice(11, 13) -12}{debt.booking.slice(13, 16)} PM</>
+                                        ? <>{debt.booking.slice(11, 13) - 12}{debt.booking.slice(13, 16)} PM</>
                                         : <>{debt.booking.slice(11, 13)}{debt.booking.slice(13, 16)} AM</>}
                                 </Typography>
                                 {props.paid == true

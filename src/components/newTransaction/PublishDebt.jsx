@@ -9,7 +9,7 @@ export default function PublishDebt(props) {
     console.log(props.booking)
     const sum = props.total + props.amount
     parseInt(sum)
-    setObj({ 'userID': props.userId, 'amount': props.amount,'booking': props.booking, 'duedate': props.dueDate, 'total': sum, 'paid': false })
+    setObj({ 'userID': props.userId, 'amount': props.amount,'services': props.services, 'booking': props.booking, 'duedate': props.dueDate, 'total': sum, 'paid': false })
   },[])
 
   return (

@@ -17,16 +17,12 @@ export default function FilterComponent(props) {
   const [isPaid, setIsPaid] = useState(false)
   const [isToday, setToday] = useState(true)
   const [total, setTotal] = useState(0)
-  const [day, setDay] = useState(updateDay.toISOString().slice(0,10))
   const [page, setPage] = useState(1);
 
-  console.log('Day: '+updateDay.toISOString().slice(0,10))
-
+  const day = updateDay.toISOString().slice(0,10)
   const debts = props.debts
   const currentUser = props.currentUser
 
-  console.log(isToday)
-  console.log(isPaid)
   const filterPaid = () => {
     const filteredArray = debts.filter((transaction) => transaction.paid === true)
     setFilter(filteredArray)
