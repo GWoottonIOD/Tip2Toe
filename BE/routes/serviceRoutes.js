@@ -16,36 +16,36 @@ const postLimiter = rateLimit({
   }); 
 
 router.get('/', getLimiter, (req, res) => { 
-    Controllers.getService(req, res);
+    Controllers.getServices(req, res);
     console.log(res.err)
 })
 
 router.get('/:id', (req, res) => {
-    Controllers.getServiceByID(req, res);
+    Controllers.getServicesByID(req, res);
 })
 
 router.post('/create', postLimiter, (req, res) => {
-    Controllers.createService(req.body, res)
+    Controllers.createServices(req.body, res)
 })
 
 router.put('/put/:id', (req, res) => {
-    Controllers.updateService(req, res)
+    Controllers.updateServices(req, res)
 })
 
 router.delete('/delete/:id', (req, res) => {
-    Controllers.deleteService(req, res)
+    Controllers.deleteServices(req, res)
 })
 
-router.delete('/userService/:id', (req, res) => {
-    Controllers.deleteServiceByID(req, res);
+router.delete('/userServices/:id', (req, res) => {
+    Controllers.deleteServicesByID(req, res);
 })
 
 router.lock('/', (req, res) => {  
-    Controllers.lockService(req, res);
+    Controllers.lockServices(req, res);
 })
 
 router.unlock('/', (req, res) => {  
-    Controllers.unlockService(req, res);
+    Controllers.unlockServices(req, res);
 })
 
 module.exports = router;

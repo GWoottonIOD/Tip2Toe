@@ -2,6 +2,7 @@ const { DataTypes, Model } = require("sequelize");
 let dbConnect = require("../dbConnect");
 const sequelizeInstance = dbConnect.Sequelize;
 const Users = require("./users")
+const Services = require("./services");
 
 class Appt extends Model { }
 //Sequelize will create this table if it doesn't exist on startup
@@ -14,6 +15,14 @@ Appt.init({
         type: DataTypes.INTEGER, allowNull: true, required: false,
         references: {
             model: Users, //reference to another model
+            key: "id", //column name of the referenced model
+            indexes: [{ unique: true }],
+        }
+    },
+    serviceID: {
+        type: DataTypes.INTEGER, allowNull: true, required: false,
+        references: {
+            model: Services, //reference to another model
             key: "id", //column name of the referenced model
             indexes: [{ unique: true }],
         }

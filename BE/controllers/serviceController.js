@@ -1,10 +1,10 @@
 "use strict";
 const Models = require("../models");
 
-const getService = (req, res) => {
+const getServices = (req, res) => {
     // const limit = JSON.parse(req.query.limit)
     // const offset = JSON.parse(req.query.offset)
-    Models.Service.findAll({
+    Models.Services.findAll({
         // limit: limit,
         // offset: offset
     }).then(function (data) {
@@ -14,24 +14,24 @@ const getService = (req, res) => {
     })
 }
 
-const getServiceByID = (req, res) => {
-    Models.Service.findAll({ where: { id: req.params.id } }).then(function (data) {
+const getServicesByID = (req, res) => {
+    Models.Services.findAll({ where: { id: req.params.id } }).then(function (data) {
         res.send({ result: 200, data: data })
     }).catch(err => {
         throw err
     })
 }
 
-const createService = (data, res) => {
-    Models.Service.create(data).then(function (data) {
+const createServices = (data, res) => {
+    Models.Services.create(data).then(function (data) {
         res.send({ result: 200, data: data })
     }).catch(err => {
         throw err
     })
 }
 
-const updateService = (req, res) => {
-    Models.Service.update(req.body, {
+const updateServices = (req, res) => {
+    Models.Services.update(req.body, {
         where: {
             id:
                 req.params.id
@@ -42,8 +42,8 @@ const updateService = (req, res) => {
         throw err
     })
 }
-const deleteService = (req, res) => {
-    Models.Service.destroy({
+const deleteServices = (req, res) => {
+    Models.Services.destroy({
         where: { id: req.params.id }
     }).then(function (data) {
         res.send({ result: 200, data: data })
@@ -52,16 +52,16 @@ const deleteService = (req, res) => {
     })
 }
 
-const deleteServiceByID = (req, res) => {
-    Models.Service.destroy({ where: { id: req.params.id } }).then(function (data) {
+const deleteServicesByID = (req, res) => {
+    Models.Services.destroy({ where: { id: req.params.id } }).then(function (data) {
         res.send({ result: 200, data: data })
     }).catch(err => {
         throw err
     })
 }
 
-const lockService = (req, rest) => {
-    Models.Service.findAll({
+const lockServices = (req, rest) => {
+    Models.Services.findAll({
 
         // const [results, metadata] = await sequelize.query(
         //     "SELECT c.*, u.id AS userId FROM comments c JOIN users u ON c.userId = u.id"
@@ -69,20 +69,20 @@ const lockService = (req, rest) => {
         // transaction: t1,
         lock: {
             // level: t1.LOCK,
-            of: Models.Service
+            of: Models.Services
         }
     });
 }
 
-const unlockService = (req, rest) => {
-    Models.Service.findAll({
+const unlockServices = (req, rest) => {
+    Models.Services.findAll({
         unlock: {
             // level: t1.LOCK,
-            of: Service
+            of: Services
         }
     });
 }
 
 module.exports = {
-    getService, createService, updateService, deleteService, getServiceByID, lockService, unlockService, deleteServiceByID
+    getServices, createServices, updateServices, deleteServices, getServicesByID, lockServices, unlockServices, deleteServicesByID
 }
